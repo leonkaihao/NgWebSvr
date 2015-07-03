@@ -33,10 +33,6 @@ cache.init(function(err){
 var routes = require('./routes/index');
 var apiAccounts = require('./routes/users');
 var apiSessions = require('./routes/sessions');
-var apiTenants = require('./routes/tenants');
-var apiAgents = require('./routes/agents');
-var apiProducts = require('./routes/products');
-var apiTransactions = require('./routes/transactions');
 var apiBackDoor = require('./routes/backDoor');
 var app = express();
 
@@ -59,12 +55,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/api/sessions', apiSessions);
 app.use('/api/accounts', apiAccounts);
-
-
-app.use('/api/tenants', apiTenants);
-app.use('/api/agents', apiAgents);
-app.use('/api/products', apiProducts);
-app.use('/api/transactions', apiTransactions);
 app.use('/api/backDoor', apiBackDoor);
 
 // catch 404 and forward to error handler
@@ -98,7 +88,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
-var server = app.listen(process.env.PORT || config.servers.managerAdminSvr.port, function() {
+var server = app.listen(process.env.PORT || config.servers.websvr.port, function() {
     console.log('listening on port %d', server.address().port);
 });
 

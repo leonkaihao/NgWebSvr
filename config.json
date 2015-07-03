@@ -5,10 +5,10 @@
         //     "port": 443,
         //     "auth":"name:password"
         // },
-        // "serverName2":{
-        //     "host": "hostname2",
-        //     "port": 8100
-        // }
+        "websvr":{
+            "host": "localhost",
+            "port": 8100
+        }
     },
     "cache": {
         "cluster": [

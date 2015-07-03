@@ -5,13 +5,10 @@
 */
 
 var users = require("./users.js");
-var tenants = require("./tenants.js");
-
 var mongoose = require('mongoose');
 
 var app = exports = module.exports = {
 	Users: users,
-    Tenants: tenants,
 	DB: mongoose,
 
 	config_data: {url:null, options:null},
@@ -46,7 +43,6 @@ app.start = function() {
 	        }	        
 	    } else {
 	    	app.Users.init(app);
-	    	app.Tenants.init(app);
 	    	app.state = "init";
 	    }
 	});
