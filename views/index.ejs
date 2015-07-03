@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn" ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+    <title><%= title %></title>
+
+    <!-- Bootstrap -->
+    <!--<link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="stylesheets/style.css" rel="stylesheet">
+    <link href="lib/angular-busy/dist/angular-busy.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <!-- Angular component-->
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular-animate/angular-animate.min.js"></script>
+    <script src="lib/angular-aria/angular-aria.min.js"></script>
+    <script src="lib/angular-busy/angular-busy.js"></script>
+    <script src="lib/angular-route/angular-route.min.js"></script>
+    <script src="lib/angular-material/angular-material.min.js"></script>
+    <script src="lib/angular-resource/angular-resource.min.js"></script>
+    <script src="lib/angular-route/angular-route.min.js"></script>
+	
+    <!-- My component-->
+    <script src="ng/app.js"></script>
+    <!-- controllers-->
+    <script src="ng/controllers/backDoor.js"></script>    
+    <script src="ng/controllers/home.js"></script>
+    <script src="ng/controllers/index.js"></script>
+    <script src="ng/controllers/login.js"></script>
+    <!-- filters-->
+    <!-- services-->
+    <script src="ng/services/api.js"></script>
+    <script src="ng/services/backDoor.js"></script>
+    <script src="ng/services/err.js"></script>
+    <script src="ng/services/sessions.js"></script>
+    <script src="ng/services/users.js"></script>
+    <!-- directives-->
+    <script src="ng/directives/appVersion.js"></script>
+  </body>
+</html>

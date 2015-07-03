@@ -1,0 +1,44 @@
+{
+    "servers": {
+        // "serverName1": {
+        //     "host": "hostname1",
+        //     "port": 443,
+        //     "auth":"name:password"
+        // },
+        // "serverName2":{
+        //     "host": "hostname2",
+        //     "port": 8100
+        // }
+    },
+    "cache": {
+        "cluster": [
+            {"host": "127.0.0.1", "port":30001},
+            {"host": "127.0.0.1", "port":30002},
+            {"host": "127.0.0.1", "port":30003}
+        ], 
+        "standAlone": {
+            "sessions": {
+                "host": "127.0.0.1", 
+                "port": 6379, 
+                "dbNum": 1
+            }
+        },       
+        "sessions": {
+            "prefix": "mgradm.session.",
+            "use": "standAlone",   //两种取值，cluster或standAlone
+            "name": "sessions",     //选择standAlone条件下，选择name对应名称的db配置
+            "options": {
+            }
+        }
+    },
+    "db": {
+        "url": "mongodb://localhost/XXXDb",
+        "options":{
+            "user": "userName",
+            "pass": "password",
+            "auth": { 
+                "authdb": "admin" 
+            }
+        }
+    }
+}

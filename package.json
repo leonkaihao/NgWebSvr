@@ -1,0 +1,25 @@
+{
+  "name": "ManagerAdminSvr",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.8.4",
+    "cookie-parser": "~1.3.3",
+    "debug": "^2.0.0",
+    "ejs": "^0.8.8",
+    "excel-export": "^0.4.1",
+    "express": "^4.9.8",
+    "express-session": "^1.11.2",
+    "hiredis": "^0.3.0",
+    "ioredis": "^1.4.0",
+    "method-override": "^2.3.1",
+    "mongoose": "^4.0.2",
+    "morgan": "^1.3.2",
+    "serve-favicon": "^2.1.7",
+    "strip-json-comments": "^1.0.2",
+    "uuid": "^2.0.1"
+  }
+}

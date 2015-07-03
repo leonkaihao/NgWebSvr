@@ -1,0 +1,31 @@
+{
+  "name": "ManagerAdminSvr",
+  "version": "0.0.0",
+  "homepage": "http://cb.sonix.com.tw/cb/project/948",
+  "authors": [
+    "kai_hao",
+    "qian_zhang",
+    "yu_dai",
+    "yuan_gao",
+    "jing_ding"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.10",
+    "angular-route": "~1.3.10",
+    "angular-busy": "~4.1.3",
+    "angular-resource": "~1.4.1",
+    "angular-material": "~0.10.0"
+  }
+}
