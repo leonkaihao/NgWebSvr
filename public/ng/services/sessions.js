@@ -7,7 +7,7 @@
  * # SessionsService
  * Service of the myApp
  */
-angular.module('myApp').factory('SessionsService', ['rootScope', 'ErrService', 'ApiService', function (rootScope, ErrService, ApiService) {
+angular.module('myApp').factory('SessionsService', ['$rootScope', 'ErrService', 'ApiService', function ($rootScope, ErrService, ApiService) {
     var cfgData = {};
 
     cfgData.createSession = function(successcb, failcb) {
@@ -33,10 +33,10 @@ angular.module('myApp').factory('SessionsService', ['rootScope', 'ErrService', '
                 //Yes!
                 $rootScope.session.token = sessionStorage.token;
                 //is token valid?
-                this.verifyToken($rootScope.session.token, function (data) {
+                cfgData.verifyToken($rootScope.session.token, function (data) {
                     //yes! 
                     //And is user has logged?
-                    this.getSessionUser($rootScope.session.token, function (data) {
+                    cfgData.getSessionUser($rootScope.session.token, function (data) {
                         //yes! so reserve user basic info in $rootScope
                         $rootScope.session.logged = true;
                         $rootScope.session.userName = data.user_name; 
@@ -53,14 +53,14 @@ angular.module('myApp').factory('SessionsService', ['rootScope', 'ErrService', '
                     //No
                     //token should be generated again
                     sessionStorage.token = $rootScope.session.token = '';
-                    this.createSession(function (data) {
+                    cfgData.createSession(function (data) {
                         //successfully generated
                         sessionStorage.token = $rootScope.session.token = data.token;
                         successcb(data);
                     }, failcb);                    
                 });
             } else {
-                this.createSession(function (data) {
+                cfgData.createSession(function (data) {
                     sessionStorage.token = $rootScope.session.token = data.token;
                     successcb(data);
                 }, failcb);
@@ -68,7 +68,7 @@ angular.module('myApp').factory('SessionsService', ['rootScope', 'ErrService', '
         } else {
             // Sorry! No web storage support..
             // token only save in $rootScope
-            this.createSession(successcb, failcb);
+            cfgData.createSession(successcb, failcb);
         }
     };
 

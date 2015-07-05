@@ -106,25 +106,34 @@ exports.signOut = function (token, cb) {
 };
 
 exports.getUser = function (token, cb) {
-    sessions.verifyToken(token, function(err, enable){
+    sessions.verifyToken(token, function(err, valid){
         var result = {};
         var statusCode = 200;
-        if (!err && enable) {
-            sessions.getSessionObject(token, function(err, data) {
-                var result = {};
-                var statusCode = 200;
-                if (!err) {
-                    result = data;
-                    statusCode = 200;
-                } else {
-                    statusCode = 500;
-                    result.code = '2001';
-                    result.message = err.message;
-                    result.description = err.message;
-                    result.source = '<<webui>>';
-                }
+        if (!err) {
+            if (valid) {
+                sessions.getSessionObject(token, function(err, data) {
+                    var result = {};
+                    var statusCode = 200;
+                    if (!err) {
+                        result = data;
+                        statusCode = 200;
+                    } else {
+                        statusCode = 500;
+                        result.code = '2001';
+                        result.message = err.message;
+                        result.description = err.message;
+                        result.source = '<<webui>>';
+                    }
+                    cb(statusCode, result);
+                });
+            } else {
+                statusCode = 403;
+                result.code = '1110';
+                result.message = 'token expired';
+                result.description = result.message;
+                result.source = '<<webui>>';
                 cb(statusCode, result);
-            });
+            }
         } else {
             statusCode = 500;
             result.code = '1102';
