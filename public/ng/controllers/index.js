@@ -9,8 +9,11 @@
  */
 angular.module('myApp').controller(
 'IndexCtrl', 
-['$scope', '$location', '$rootScope', 'UserService', 'SessionService', 
-function ($scope, $location, $rootScope, UserService, SessionService) {
+['$scope', '$location', '$rootScope', '$mdSidenav', 'UsersService', 'SessionsService', 
+function ($scope, $location, $rootScope, $mdSidenav, UsersService, SessionsService) {
+	$scope.toggleSidenav = function(menuId) {
+    	$mdSidenav(menuId).toggle();
+  	};
     $scope.logout = function () {
     	SessionService.deleteSessionUser($rootScope.session.token, function (data) {
     		$location.path('/login');
