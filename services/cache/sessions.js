@@ -128,7 +128,7 @@ exports.getSessionAttrs = function(token, arr, cb) {
             cb(err, null);
         } else {
             var attrObj = {};
-            var count = arr.length();
+            var count = arr.length;
             for (var i = 0; i < count; ++i) {
                 attrObj[arr[i]] = reply[i];
             }

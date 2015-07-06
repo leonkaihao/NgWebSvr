@@ -91,7 +91,7 @@ exports.signOut = function (token, cb) {
 };
 
 exports.getUser = function (token, cb) {
-    sessions.getSessionAttr(token, ['id', 'userName', 'nickName'], function(err, data) {
+    sessions.getSessionAttrs(token, ['userId', 'userName', 'nickName'], function(err, data) {
         var result = {};
         var statusCode = 200;
         if (!err) {
@@ -102,7 +102,7 @@ exports.getUser = function (token, cb) {
             };
             statusCode = 200;
         } else {
-            statusCode = 500;
+            statusCode = 404;
             result.code = '2001';
             result.message = err.message;
             result.description = err.message;
