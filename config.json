@@ -24,7 +24,7 @@
             }
         },       
         "sessions": {
-            "prefix": "mgradm.session.",
+            "prefix": "websvr.session.",
             "use": "standAlone",   //两种取值，cluster或standAlone
             "name": "sessions",     //选择standAlone条件下，选择name对应名称的db配置
             "options": {

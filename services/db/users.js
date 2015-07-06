@@ -6,8 +6,7 @@ var uuid = require('uuid');
 
 var userObj = exports = module.exports = {};
 
-var accountModel = model.AccountModel;
-var userProfileModel = model.UserProfileModel;
+var UserModel = model.UserModel;
 
 userObj.init = function (ap) {
     userObj.app = ap;
@@ -15,172 +14,122 @@ userObj.init = function (ap) {
 };
 
 /**
-* Accounts operations
+* Users operations
 */
 
-userObj.getRoleNameList = function(cb) {
-    cb(model.roleNames);
-};
-
-userObj.authAccount = function (roleType, userName, password, cb) {
-    console.log(roleType, userName, password);
-	accountModel.findOne({
+userObj.verifyUser = function (userName, password, cb) {
+	UserModel.findOne({
         'userName': userName, 
-        'password': password,
-        //'roles': { $elemMatch: {type: roleType} }
-    }).select('id userName nickName roles').exec(function (err, account) {
+        'password': password
+    }).select('id userName nickName').exec(function (err, user) {
 		if (err) {
 			cb(err, null);
-        } else if (!account) {
-			cb(new Error("Auth failed"), null);
+        } else if (!user) {
+			cb(new Error('Verify user failed'), null);
 		} else {
-            cb(null, account);
+            cb(null, user);
 		}
     });
 };
 
-userObj.headAccount = function(userName, cb) {
-    accountModel.findOne({
+userObj.queryUser = function(userName, cb) {
+    UserModel.findOne({
         'userName': userName
-    }).select('id').exec(function (err, account) {
+    }).select('id').exec(function (err, user) {
         if (err) {
             cb(err, null);
-        } else if (!account) {
-            cb(new Error("Account not found"), null);
+        } else if (!user) {
+            cb(new Error("User not found"), null);
         } else {
-            cb(null, account);
+            cb(null, user);
         }
     });
 };
 
-userObj.createAccount = function (userName, password, userObj, cb) {
-    var accountInfo = {
+userObj.createUser = function (userName, password, userObj, cb) {
+    var userInfo = {
         id: uuid.v4(),
         userName: userName,
         password: password,
-        nickName: '',
-        roles: []
+        nickName: userName
     };
     if (userObj.nickName) {
-        accountInfo.nickName = userObj.nickName;
+        userInfo.nickName = userObj.nickName;
     }
-    if (userObj.roles) {
-        accountInfo.roles = userObj.roles;
-    }
-    var newAccount = new accountModel(accountInfo);
-    newAccount.save ( function ( err, account ){
+    var newUser = new UserModel(userInfo);
+    newUser.save ( function ( err, user ){
         if (err) {
             cb(err, null);
         } else {
             var result = {
-                id: account.id
+                id: user.id
             };
             cb(null, result);
         }
     });
 };
 
-
-userObj.updateAccountSelf = function (accountId, accountObj, cb) {
-    accountModel.findOne({
-        'id': accountId
-    }, function (err, account) {
+userObj.updateUser = function (userId, userObj, cb) {
+    UserModel.findOne({
+        'id': userId
+    }, function (err, user) {
         if (err) {
             cb(err, null);
-        } else if (!account) {
-            cb(new Error("Account not found"), null);
+        } else if (!user) {
+            cb(new Error("User not found"), null);
         } else {
-            for (key in accountObj) {
-                if (key === 'passwordOld') {
-                    if (account.password !== accountObj.passwordOld) {
-                        cb(new Error("check old password failed"), null);
-                        return;
-                    }
-                    if (!accountObj.passwordNew) {
-                        cb(new Error("check new password failed"), null);
-                        return;                        
-                    }
-                    account.password = accountObj.passwordNew;
-                    account.modifyOn = Date.now();
-                }
-                if (key === 'nickName') {
-                    user.nickName = accountObj.nickName;
-                }
-            }
-            account.save(function (err, result) {
-                if (err) {
-                    cb(err, null);
-                } else {
-                    cb(null, account);
-                }
-            });
-        }
-    });
-};
-
-userObj.updateAccount = function (accountId, accountObj, cb) {
-    accountModel.findOne({
-        'id': accountId
-    }, function (err, account) {
-        if (err) {
-            cb(err, null);
-        } else if (!account) {
-            cb(new Error("Account not found"), null);
-        } else {
-            for (key in accountObj) {
+            for (key in userObj) {
                 if (key === 'password') {
-                    account.password = accountObj.password;
-                    account.modifyOn = Date.now();
+                    user.password = userObj.password;
                 }
                 if (key === 'nickName') {
-                    user.nickName = accountObj.nickName;
+                    user.nickName = userObj.nickName;
                 }
-
-                if (key === 'roles') {
-                    user.roles = accountObj.roles;
-                }
+                //todo: add other attrs here
+                //...
+                user.modifyOn = Date.now();
             }
-            account.save(function (err, result) {
+            user.save(function (err, result) {
                 if (err) {
                     cb(err, null);
                 } else {
-                    cb(null, account);
+                    cb(null, user);
                 }
             });
         }
     });
 };
 
-userObj.getAccountInfo = function (accountId, cb) {
-    var acId = accountId;
-    accountModel.findOne({id: acId})
-    .select('id userName nickName roles createOn modifyOn enabled')
-    .exec(function (err, account) {
+userObj.getUserInfo = function (userId, cb) {
+    var acId = userId;
+    UserModel.findOne({id: acId})
+    .select('id userName nickName createOn modifyOn enabled')
+    .exec(function (err, user) {
         if (err) {
             cb(err, null)
-        } else if (!account) {
-            cb(new Error("Can not find account by account id " + acId), null);
+        } else if (!user) {
+            cb(new Error("Can not find user by user id " + acId), null);
         } else {
-            cb(null, account);
+            cb(null, user);
         }
     });
 };
 
 
 /**
-* get account list
+* get user list
 *   
 */
-userObj.getAccountList = function (tenantId, offset, limit, cb) {
-    accountModel.find({roles: {$elemMatch: {tenantId: tenantId}}})
+userObj.getUserList = function (offset, limit, cb) {
+    UserModel.find()
     .skip(offset)
     .limit(limit)
-    .select('id userName nickName roles createOn modifyOn enabled')
-    .exec(function(err, accounts) {
+    .select('id userName nickName createOn modifyOn enabled')
+    .exec(function(err, users) {
         if (err) {
             cb(err, null)
         } else {
-            cb(null, accounts);
+            cb(null, users);
         }
     });
 };

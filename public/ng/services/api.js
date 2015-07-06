@@ -20,10 +20,10 @@ angular.module('myApp').factory('ApiService', ['$http', 'ErrService', function (
                 if (i != 0) {
                     paramStr +='&';
                 }
-                paramStr += String(elem);
+                paramStr += (elem + '=' + arg[elem]);
                 ++i;
             }
-            break;
+            return paramStr;
         case 'undefined':
         case 'function':
             return '';
@@ -36,17 +36,17 @@ angular.module('myApp').factory('ApiService', ['$http', 'ErrService', function (
     var makeUrl = function () {
         var argLen = arguments.length;
         if (argLen == 0) {
-            return null;
+            return '';
         }
         if (typeof arguments[0] != 'string') {
-            return null;
+            return '';
         }
         var urlStr = arguments[0];
         if (argLen == 1) {
             return urlStr;
         }
         urlStr = urlStr + '?' + makeArg(arguments[1]);
-        for (var i = 1; i < argLen; ++i) {
+        for (var i = 2; i < argLen; ++i) {
             urlStr = urlStr + '&' + makeArg(arguments[1]);
         }
         return urlStr;

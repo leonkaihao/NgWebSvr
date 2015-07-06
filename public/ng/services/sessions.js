@@ -54,21 +54,24 @@ angular.module('myApp').factory('SessionsService', ['$rootScope', 'ErrService', 
                     //token should be generated again
                     sessionStorage.token = $rootScope.session.token = '';
                     cfgData.createSession(function (data) {
-                        //successfully generated
-                        sessionStorage.token = $rootScope.session.token = data.token;
-                        successcb(data);
+                        //successfully generated, but need login
+                        failcb(ErrService.getErr('11001'));
                     }, failcb);                    
                 });
             } else {
+                // token not found in sessionStorage, create one
                 cfgData.createSession(function (data) {
-                    sessionStorage.token = $rootScope.session.token = data.token;
-                    successcb(data);
+                    //successfully generated, but need login
+                    failcb(ErrService.getErr('11001'));
                 }, failcb);
             }
         } else {
             // Sorry! No web storage support..
-            // token only save in $rootScope
-            cfgData.createSession(successcb, failcb);
+            // token only save in $rootScope, create one
+            cfgData.createSession(function (data) {
+                //successfully generated, but need login
+                failcb(ErrService.getErr('11001'));
+            }, failcb);
         }
     };
 

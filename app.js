@@ -53,6 +53,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use(apiSessions.verify()); //@tip by Kai: Token should be verified every api request except create session
 app.use('/api/sessions', apiSessions);
 app.use('/api/accounts', apiAccounts);
 app.use('/api/backDoor', apiBackDoor);
