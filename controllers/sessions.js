@@ -1,6 +1,7 @@
 
 'use strict';
 var sessions = require('../services/cache').Sessions;
+var users = require("../services/db").Users;
 
 exports.createSession = function (cb) {
 	sessions.createSession(function (err, data) {
@@ -39,17 +40,21 @@ exports.verifyToken = function(token, cb) {
     });
 };
 
-exports.auth = function(token, obj, cb) {
-	users.authAccount(obj.role, obj.userName, obj.password, function(err, doc){
+exports.createUser = function(token, obj, cb) {
+	users.verifyUser(obj.userName, obj.password, function(err, doc){
 		var result = {};
         var statusCode = 200;
 		if (!err) {
-            sessions.updateSession(token, doc, function(err, data) {
+            var userData = {
+                userId: doc.id,
+                userName: doc.userName,
+                nickName: doc.nickName
+            };
+            sessions.updateSession(token, userData, function(err, data) {
                 if (!err) {
                     result = {
-                      user_id: doc.acId,
+                      user_id: doc.id,
                       user_name: doc.userName,
-                      type: doc.roles[0].type,
                       nick_name: doc.nickName
                     }
                     cb(statusCode, result);

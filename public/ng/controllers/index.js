@@ -21,4 +21,7 @@ function ($scope, $location, $rootScope, $mdSidenav, UsersService, SessionsServi
     		$location.path('/login');
     	});
     };
+    $scope.login = function () {
+        $location.path('/login');
+    };
 }]);

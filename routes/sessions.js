@@ -25,7 +25,7 @@ router.post('/user', function(req, res){
 	obj.userName = req.body.data.user_name;
 	obj.password = req.body.data.password;
 	obj.securityCode = req.body.data.security_code;
-    sessions.auth(token, obj, function (statusCode, result) {
+    sessions.createUser(token, obj, function (statusCode, result) {
 		res.status(statusCode).json(result);
 	});	
 });

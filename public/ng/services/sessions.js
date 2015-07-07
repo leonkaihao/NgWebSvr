@@ -102,7 +102,7 @@ angular.module('myApp').factory('SessionsService', ['$rootScope', 'ErrService', 
             }
     	};
         //whatever successful or not, clear session's user info
-        ApiService.delete('/api/sessions/user', function (data) {
+        ApiService.delete('/api/sessions/user', obj, function (data) {
             delete $rootScope.session.userName; 
             delete $rootScope.session.nickName;
             delete $rootScope.session.userId;

@@ -9,15 +9,15 @@
  */
 angular.module('myApp').controller(
 'LoginCtrl', 
-['$scope', '$location', '$rootScope', 'UserService', 'SessionService', 
-function ($scope, $location, $rootScope, UserService, SessionService) {
+['$scope', '$location', '$rootScope', 'UsersService', 'SessionsService', 
+function ($scope, $location, $rootScope, UsersService, SessionsService) {
 	$scope.loginData = {
 		userName: '',
 		password: '',
 		securityCode: ''
 	};
     $scope.login = function () {
-    	SessionService.createSessionUser(
+    	SessionsService.createSessionUser(
     	$rootScope.session.token, 
     	$scope.loginData.userName, 
     	$scope.loginData.password, 

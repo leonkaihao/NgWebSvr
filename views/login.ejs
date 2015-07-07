@@ -1,0 +1,13 @@
+<form name="LoginForm">
+	<div layout layout-sm="column">
+	    <md-input-container >
+	        <label>User Name</label>
+	        <input ng-model="loginData.userName" required>
+	    </md-input-container>
+	    <md-input-container >
+	        <label>Password</label>
+	        <input type="password" ng-model="loginData.password" required>
+	    </md-input-container>
+	    <md-button class="md-raised" ng-click="login()">Login</md-button>
+	</div>
+</form>
