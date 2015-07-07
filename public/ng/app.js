@@ -5,7 +5,7 @@
 var sessionStorage = window.sessionStorage;
 
 // Declare app level module which depends on filters, and services
-var myApp = angular.module('myApp', ['ngResource', 'ngAnimate', 'ngRoute', 'ngTouch', 'cgBusy', 'ngMaterial']);
+var myApp = angular.module('myApp', ['ngResource', 'ngAnimate', 'ngRoute', 'ngTouch', 'cgBusy', 'ngMaterial', 'ngMessages']);
 myApp.config([
     '$routeProvider', 
     '$locationProvider',

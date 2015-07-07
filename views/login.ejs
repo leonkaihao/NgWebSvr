@@ -1,13 +1,23 @@
-<form name="LoginForm">
-	<div layout layout-sm="column">
+<div layout="row" flex layout-align="center">
+<md-content layout-padding>
+	<form name="LoginForm">
 	    <md-input-container >
 	        <label>User Name</label>
-	        <input ng-model="loginData.userName" required>
+	        <input name="username" ng-model="loginData.userName" md-maxlength="30" required>
+	        <div ng-messages="LoginForm.username.$error">
+	            <div ng-message="required">This is required.</div>
+	            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+	        </div>
 	    </md-input-container>
 	    <md-input-container >
 	        <label>Password</label>
-	        <input type="password" ng-model="loginData.password" required>
+	        <input name="password" type="password" ng-model="loginData.password" md-maxlength="30" required>
+	        <div ng-messages="LoginForm.password.$error">
+	            <div ng-message="required">This is required.</div>                
+	            <div ng-message="md-maxlength">The password has to be less than 30 characters long.</div>
+	        </div>
 	    </md-input-container>
 	    <md-button class="md-raised" ng-click="login()">Login</md-button>
-	</div>
-</form>
+	</form>
+</md-content>
+</div>
