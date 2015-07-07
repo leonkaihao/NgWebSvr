@@ -95,12 +95,19 @@ exports.getUser = function (token, cb) {
         var result = {};
         var statusCode = 200;
         if (!err) {
-            result = {
-                user_id: data.userId,
-                user_name: data.userName,
-                nick_name: data.nickName
-            };
-            statusCode = 200;
+            if (!data.userId) {
+                statusCode = 404;
+                result.code = '0004';
+                result.description = result.message = 'No user logged';
+                result.source = '<<webui>>';
+            } else {
+                statusCode = 200;
+                result = {
+                    user_id: data.userId,
+                    user_name: data.userName,
+                    nick_name: data.nickName
+                };
+            }
         } else {
             statusCode = 404;
             result.code = '2001';

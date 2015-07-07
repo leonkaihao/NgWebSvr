@@ -15,7 +15,7 @@ function ($scope, $location, $rootScope, $mdSidenav, UsersService, SessionsServi
     	$mdSidenav(menuId).toggle();
   	};
     $scope.logout = function () {
-    	SessionService.deleteSessionUser($rootScope.session.token, function (data) {
+    	SessionsService.deleteSessionUser($rootScope.session.token, function (data) {
     		$location.path('/login');
     	}, function (err) {
     		$location.path('/login');
