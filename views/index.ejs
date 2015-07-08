@@ -22,52 +22,10 @@
     <![endif]-->
   </head>
   <body layout="column" ng-controller="IndexCtrl">
-    <md-toolbar layout="row">
-        <div class="md-toolbar-tools" flex>
-            <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
-              <md-icon aria-label="Menu" md-svg-icon="img/common/menu.svg"></md-icon>
-            </md-button>
-            <h1>My App</h1>
-        </div>
-        <div class="md-toolbar-tools" flex layout-align="end">
-            <h1 ng-if="session.logged">Welcome {{session.nickName}}</h1>
-            <md-button ng-if="session.logged" ng-click="logout()" class="md-icon-button">
-              <md-icon aria-label="Menu" md-svg-icon="img/common/logout.svg"></md-icon>
-            </md-button>
-            <md-button ng-if="!session.logged" ng-click="login()" class="md-icon-button">
-              <md-icon aria-label="Menu" md-svg-icon="img/common/login.svg"></md-icon>
-            </md-button>
-        </div>      
-    </md-toolbar>
+    <% include header%>
     <div ng-view layout="row" flex>
     </div>
-    <!-- Angular component-->
-    <script src="lib/angular/angular.min.js"></script>
-    <script src="lib/angular-animate/angular-animate.min.js"></script>
-    <script src="lib/angular-aria/angular-aria.min.js"></script>
-    <script src="lib/angular-busy/angular-busy.js"></script>
-    <script src="lib/angular-route/angular-route.min.js"></script>
-    <script src="lib/angular-material/angular-material.min.js"></script>    
-    <script src="lib/angular-messages/angular-messages.min.js"></script>
-    <script src="lib/angular-resource/angular-resource.min.js"></script>
-    <script src="lib/angular-route/angular-route.min.js"></script>
-    <script src="lib/angular-touch/angular-touch.min.js"></script>
-	
-    <!-- My component-->
-    <script src="ng/app.js"></script>
-    <!-- controllers-->
-    <script src="ng/controllers/backDoor.js"></script>    
-    <script src="ng/controllers/home.js"></script>
-    <script src="ng/controllers/index.js"></script>
-    <script src="ng/controllers/login.js"></script>
-    <!-- filters-->
-    <!-- services-->
-    <script src="ng/services/api.js"></script>
-    <script src="ng/services/backDoor.js"></script>
-    <script src="ng/services/err.js"></script>
-    <script src="ng/services/sessions.js"></script>
-    <script src="ng/services/users.js"></script>
-    <!-- directives-->
-    <script src="ng/directives/appVersion.js"></script>
+    <% include footer%>
+    <% include component%>
   </body>
 </html>

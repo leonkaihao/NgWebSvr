@@ -1,0 +1,17 @@
+<md-toolbar layout="row">
+    <div class="md-toolbar-tools" flex>
+        <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
+          <md-icon aria-label="Menu" md-svg-icon="img/common/menu.svg"></md-icon>
+        </md-button>
+        <h1>My App</h1>
+    </div>
+    <div class="md-toolbar-tools" flex layout-align="end">
+        <h1 ng-if="session.logged">Welcome {{session.nickName}}</h1>
+        <md-button ng-if="session.logged" ng-click="logout()" class="md-icon-button">
+          <md-icon aria-label="Menu" md-svg-icon="img/common/logout.svg"></md-icon>
+        </md-button>
+        <md-button ng-if="!session.logged" ng-click="login()" class="md-icon-button">
+          <md-icon aria-label="Menu" md-svg-icon="img/common/login.svg"></md-icon>
+        </md-button>
+    </div>      
+</md-toolbar>

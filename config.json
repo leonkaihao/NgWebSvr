@@ -1,43 +1,52 @@
 {
+    "env": "test", //options are: "test", "production"
     "servers": {
-        // "serverName1": {
-        //     "host": "hostname1",
-        //     "port": 443,
-        //     "auth":"name:password"
+        //this is a example to define a server that for web server to communicate with.
+        // "serverName1": {                 //arbitrary server name, not duplicate in "servers" section
+        //     "host": "hostname1",         //IP or Domain name, not with "http://"
+        //     "port": 443,                 //port number, Number type
+        //     "auth":"name:password"       //basic-digest authentication. If not use, do not write this line.
         // },
-        "websvr":{
+        "websvr":{ //web server itself to configure for start
             "host": "localhost",
             "port": 8100
         }
     },
+
+    //this is redis configuration, include 2 main type: "cluster" and "standalone", 
+    // other section types are functional types which will use 1 of the 2 main types
     "cache": {
+        //cluster section
         "cluster": [
             {"host": "127.0.0.1", "port":30001},
             {"host": "127.0.0.1", "port":30002},
             {"host": "127.0.0.1", "port":30003}
-        ], 
-        "standAlone": {
+        ],
+        //standalone section
+        "standalone": {
             "sessions": {
-                "host": "127.0.0.1", 
-                "port": 6379, 
+                "host":  "127.0.0.1", 
+                "port":  6379, 
                 "dbNum": 1
             }
-        },       
+        },
+        //sessions section     
         "sessions": {
-            "prefix": "websvr.session.",
-            "use": "standAlone",   //两种取值，cluster或standAlone
-            "name": "sessions",     //选择standAlone条件下，选择name对应名称的db配置
-            "options": {
+            "prefix": "websvr.session.", //this will be add to the redis key as prefix, to distinguish from different applications
+            "use": "standalone",         //2 choices，cluster or standalone
+            "name": "sessions",          //curesponding to standalone-->sessions
+            "options": {                 // if you have some other redis option, add here
             }
         }
     },
+    //this is mongodb configuation
     "db": {
-        "url": "mongodb://localhost/XXXDb",
-        "options":{
-            "user": "userName",
-            "pass": "password",
-            "auth": { 
-                "authdb": "admin" 
+        "url": "mongodb://localhost/testDb", //full mongodb url without user:pwd
+        "options":{ //this is mongodb option, some other options reference to official doc
+            //"user": "userName",
+            //"pass": "password",
+            //"auth": { 
+            //    "authdb": "admin" 
             }
         }
     }

@@ -32,8 +32,8 @@ exports.init = function(cacheMou, cb) {
             return;
         }
         client = cluster;
-    } else {
-        var cacheConfig = config.standAlone[sessions.name];
+    } else { //standalone
+        var cacheConfig = config.standalone[sessions.name];
         client = new Redis({
             host: cacheConfig.host,
             port: cacheConfig.port,
