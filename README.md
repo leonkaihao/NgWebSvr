@@ -1,17 +1,17 @@
 # NgWebSvr Description
 ## Description
 NgWebSvr is a framework of websvr as a seed, integrated with functions below:
--- Frontend: Angular
--- Design: Google Material, with angular support
--- Backend: Nodejs http server, express framework
--- Database: Mongodb
--- Cache & Session: Redis
--- Support basic support include sessions and user access logics
--- Browser: Chrome recommended. Other browser? Better not.
+ - Frontend: Angular
+ - Design: Google Material, with angular support
+ - Backend: Nodejs http server, express framework
+ - Database: Mongodb
+ - Cache & Session: Redis
+ - Support basic support include sessions and user access logics
+ - Browser: Chrome recommended. Other browser? Better not.
 ## install
--- install redis, reference to http://redis.io/
--- install mongodb, reference to https://www.mongodb.org/
--- Install server components
+ - install redis, reference to http://redis.io/
+ - install mongodb, reference to https://www.mongodb.org/
+ - Install server components
 ```
 npm install
 bower install
@@ -32,11 +32,11 @@ Prefix the choice with ! to persist it to bower.json
 ## configure
 see config.json, there's enough comment in it, you should config it for your personal website.
 ## build a distribution
--- Install gulp component
+ - Install gulp component
 ```
 npm install -g gulp
 ```
--- Use gulp
+ - Use gulp
 ```
 gulp
 or
