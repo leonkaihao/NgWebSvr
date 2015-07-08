@@ -42,12 +42,12 @@
     //this is mongodb configuation
     "db": {
         "url": "mongodb://localhost/testDb", //full mongodb url without user:pwd
-        "options":{ //this is mongodb option, some other options reference to official doc
+        "options": { //this is mongodb option, some other options reference to official doc
             //"user": "userName",
             //"pass": "password",
             //"auth": { 
             //    "authdb": "admin" 
-            }
+            //}
         }
     }
 }
