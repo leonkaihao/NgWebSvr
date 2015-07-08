@@ -12,8 +12,10 @@ NgWebSvr is a framework of websvr as a seed, integrated with functions below:
 -- install redis, reference to http://redis.io/
 -- install mongodb, reference to https://www.mongodb.org/
 -- Install server components
-> npm install
-> bower install
+```
+npm install
+bower install
+```
 
 you may find tip below, select 1, because angular-animate has some known-issue with angular-material, now we should use the matched version.
 ```
@@ -31,10 +33,12 @@ Prefix the choice with ! to persist it to bower.json
 see config.json, there's enough comment in it, you should config it for your personal website.
 ## build a distribution
 -- Install gulp component
-> npm install -g gulp
+```
+npm install -g gulp
+```
 -- Use gulp
 ```
-> gulp
-> or
-> gulp build
+gulp
+or
+gulp build
 ```
