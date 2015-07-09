@@ -37,15 +37,33 @@ angular.module('myApp').factory('MsgService', function () {
         lang = 'zh-cn';
     };
 
-    serviceData.getErr = function (errcode) {
-        var errItem = msgTab[errcode];
-        if (!errItem) {
-            errItem = msgTab['e99999'];
+    serviceData.getMsg = function (code) {
+        var msgItem = msgTab[code];
+        if (!msgItem) {
+            msgItem = msgTab['e99999'];
         }
-        return {
-            name: errItem.name,
-            message: errItem[lang]
+        var msg = {
+            code: code,
+            name: msgItem.name,
+            message: msgItem[lang]
         };
+        msg.alert = function () {
+            alert (msg.message);
+        };
+        msg.debug = function() {
+            switch (msg.code[0]) {
+            case 'e':
+                console.error(this.message);
+                break;
+            case 'w':
+                console.warning(this.message);
+                break;
+            default:
+                console.log(this.message);
+                break;
+            }
+        };
+        return msg;
 	};
 
     return serviceData;

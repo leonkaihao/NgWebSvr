@@ -63,9 +63,12 @@ angular.module('myApp').factory('ApiService', ['$http', 'MsgService', function (
             successcb(data);
         }).error(function (data, status, headers, config) {
             if (data.code) {
-                failcb(MsgService.getErr(data.code));
-            }                
-            console.error(data);
+                var msg = MsgService.getMsg(data.code);
+                failcb(msg);
+                msg.debug();
+            } else {             
+                console.error(data);
+            }
         });
     };
     cfgData.post = function(url, obj, successcb, failcb) {
@@ -79,9 +82,12 @@ angular.module('myApp').factory('ApiService', ['$http', 'MsgService', function (
             successcb(data);
         }).error(function (data, status, headers, config) {
             if (data.code) {
-                failcb(MsgService.getErr(data.code));
-            }                
-            console.error(data);
+                var msg = MsgService.getMsg(data.code);
+                failcb(msg);
+                msg.debug();
+            } else {             
+                console.error(data);
+            }
         });
     };
     cfgData.put = function(url, obj, successcb, failcb) {
@@ -95,9 +101,12 @@ angular.module('myApp').factory('ApiService', ['$http', 'MsgService', function (
             successcb(data);
         }).error(function (data, status, headers, config) {
             if (data.code) {
-                failcb(MsgService.getErr(data.code));
-            }                
-            console.error(data);
+                var msg = MsgService.getMsg(data.code);
+                failcb(msg);
+                msg.debug();
+            } else {             
+                console.error(data);
+            }
         });
     };
     cfgData.delete = function(url, obj, successcb, failcb) {
@@ -111,9 +120,12 @@ angular.module('myApp').factory('ApiService', ['$http', 'MsgService', function (
             successcb(data);
         }).error(function (data, status, headers, config) {
             if (data.code) {
-                failcb(MsgService.getErr(data.code));
-            }                
-            console.error(data);
+                var msg = MsgService.getMsg(data.code);
+                failcb(msg);
+                msg.debug();
+            } else {             
+                console.error(data);
+            }
         });
     };
     cfgData.head = function(url, obj, successcb, failcb) {
@@ -126,7 +138,9 @@ angular.module('myApp').factory('ApiService', ['$http', 'MsgService', function (
         .success(function (data, status, headers, config) {
             successcb('');
         }).error(function (data, status, headers, config) {
-            failcb(MsgService.getErr('0004'));
+            var msg = MsgService.getMsg('e0004');
+            failcb(msg);
+            msg.debug();
         });
     };
     return cfgData;

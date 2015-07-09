@@ -47,7 +47,7 @@ angular.module('myApp').factory('SessionsService', ['$rootScope', 'MsgService', 
                     }, function (err){
                         //No
                         //that's OK, user need login
-                        failcb(MsgService.getErr('m11001'));
+                        failcb(MsgService.getMsg('m11001'));
                     });
                 }, function (err){
                     //No
@@ -55,14 +55,14 @@ angular.module('myApp').factory('SessionsService', ['$rootScope', 'MsgService', 
                     sessionStorage.token = $rootScope.session.token = '';
                     cfgData.createSession(function (data) {
                         //successfully generated, but need login
-                        failcb(MsgService.getErr('m11001'));
+                        failcb(MsgService.getMsg('m11001'));
                     }, failcb);                    
                 });
             } else {
                 // token not found in sessionStorage, create one
                 cfgData.createSession(function (data) {
                     //successfully generated, but need login
-                    failcb(MsgService.getErr('m11001'));
+                    failcb(MsgService.getMsg('m11001'));
                 }, failcb);
             }
         } else {
@@ -70,7 +70,7 @@ angular.module('myApp').factory('SessionsService', ['$rootScope', 'MsgService', 
             // token only save in $rootScope, create one
             cfgData.createSession(function (data) {
                 //successfully generated, but need login
-                failcb(MsgService.getErr('m11001'));
+                failcb(MsgService.getMsg('m11001'));
             }, failcb);
         }
     };
