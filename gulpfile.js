@@ -5,6 +5,7 @@ var minifyCss = require('gulp-minify-css');
 var minifyHtml = require('gulp-html-minifier');
 var ngAnnotate = require('gulp-ng-annotate');
 var jshint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
 var gulpFilter = require('gulp-filter');
 var stripJsonComments = require('gulp-strip-json-comments');
 var jeditor = require("gulp-json-editor");
@@ -34,37 +35,41 @@ gulp.task('build', ['clean'], function () {
 
 
     return gulp.src(['**', '!node_modules/','!node_modules/**', '!gulpfile.js', '!dist/', '!dist/**', '!public/lib/', '!public/lib/**', '!views/component.ejs'])
-            //tune angular file
-            .pipe(ngFilter)
-            .pipe(ngAnnotate())
-            .pipe(concat(ngPath + '/my-ng.min.js'))
-            .pipe(uglifyJs())
-            .pipe(ngFilter.restore()).on('error', errHandler)
-            //tune nodejs file
-            .pipe(jsFilter)
-            .pipe(uglifyJs())
-            .pipe(jsFilter.restore()).on('error', errHandler)
-            //tune css file
-            .pipe(cssFilter)
-            .pipe(minifyCss()).on('error', errHandler)
-            .pipe(cssFilter.restore())
-            //tune html file
-            .pipe(htmlFiler)
-            .pipe(minifyHtml()).on('error', errHandler)
-            .pipe(htmlFiler.restore())
-            //tune config file
-            .pipe(configFilter)
-            .pipe(stripJsonComments())
-            .pipe(jsonlint())
-            .pipe(jsonlint.failOnError())
-            .pipe(jsonlint.reporter())
-            .pipe(jeditor(function(json) {
-                json.env = "product";
-                return json;
-            }))
-            .pipe(configFilter.restore())
-            //output to dest folder
-            .pipe(gulp.dest('dist'));
+        //tune angular file
+        .pipe(ngFilter)
+        .pipe(ngAnnotate())
+        .pipe(jshint())
+        .pipe(jshint.reporter(stylish))
+        .pipe(concat(ngPath + '/my-ng.min.js'))
+        .pipe(uglifyJs())
+        .pipe(ngFilter.restore()).on('error', errHandler)
+        //tune nodejs file
+        .pipe(jsFilter)
+        .pipe(jshint())
+        .pipe(jshint.reporter(stylish))
+        .pipe(uglifyJs())
+        .pipe(jsFilter.restore()).on('error', errHandler)
+        //tune css file
+        .pipe(cssFilter)
+        .pipe(minifyCss()).on('error', errHandler)
+        .pipe(cssFilter.restore())
+        //tune html file
+        .pipe(htmlFiler)
+        .pipe(minifyHtml()).on('error', errHandler)
+        .pipe(htmlFiler.restore())
+        //tune config file
+        .pipe(configFilter)
+        .pipe(stripJsonComments())
+        .pipe(jsonlint())
+        .pipe(jsonlint.failOnError())
+        .pipe(jsonlint.reporter())
+        .pipe(jeditor(function(json) {
+            json.env = "product";
+            return json;
+        }))
+        .pipe(configFilter.restore())
+        //output to dest folder
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('default', ['build']);

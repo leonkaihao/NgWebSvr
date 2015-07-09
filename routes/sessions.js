@@ -60,6 +60,6 @@ router.verify = function () {
 			});
 		}
 	};
-}
+};
 
 module.exports = router;

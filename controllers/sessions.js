@@ -56,7 +56,7 @@ exports.createUser = function(token, obj, cb) {
                       user_id: doc.id,
                       user_name: doc.userName,
                       nick_name: doc.nickName
-                    }
+                    };
                     cb(statusCode, result);
                 } else {                    
                     statusCode = 500;

@@ -17,7 +17,7 @@ angular.module('myApp').factory('ApiService', ['$http', 'ErrService', function (
         case 'object':
             var i = 0;
             for (var elem in arg) {
-                if (i != 0) {
+                if (i !== 0) {
                     paramStr +='&';
                 }
                 paramStr += (elem + '=' + arg[elem]);
@@ -35,7 +35,7 @@ angular.module('myApp').factory('ApiService', ['$http', 'ErrService', function (
     //第一个参数必须是resource的url,后面可以接任意个object,string或number，都会被当作参数连接起来
     var makeUrl = function () {
         var argLen = arguments.length;
-        if (argLen == 0) {
+        if (argLen === 0) {
             return '';
         }
         if (typeof arguments[0] != 'string') {

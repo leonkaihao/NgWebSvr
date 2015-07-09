@@ -78,7 +78,7 @@ userObj.updateUser = function (userId, userObj, cb) {
         } else if (!user) {
             cb(new Error("User not found"), null);
         } else {
-            for (key in userObj) {
+            for (var key in userObj) {
                 if (key === 'password') {
                     user.password = userObj.password;
                 }

@@ -19,7 +19,7 @@ exports.httpsReq = function(options, dataObj, successcb, failcb) {
         });
         agentRes.on('end', function () {
             var fullData = Buffer.concat(chunks, dataSize);
-            if (dataSize != 0) {
+            if (dataSize !== 0) {
                 if (fullData) {
                     try {
                         fullData = JSON.parse(fullData);

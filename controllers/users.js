@@ -31,16 +31,16 @@ exports.getUsers = function (token, obj, cb) {
               "offset": obj.offset, //实际偏移量
               "count": doc.length,  //实际个数
               "users": []
-            }
+            };
             for (var i = 0; i < doc.length; i++) {
                 var user = {
                     id: doc[i].id,
                     user_name: doc[i].userName,
                     nick_name: doc[i].nickName,
                     enable:  doc[i].enabled
-                }
+                };
                 result.users.push(user);
-            };
+            }
         } else {
             statusCode = 500;
             result.code = '2001';
@@ -55,25 +55,25 @@ exports.getUsers = function (token, obj, cb) {
 
 
 exports.createUser = function(token, userObj, cb) {
-    users.getUserList(obj.offset, obj.limit, function (err, doc) {
+    users.getUserList(userObj.offset, userObj.limit, function (err, doc) {
         var result = {};
         var statusCode = 200;
         if (!err) {
             result = {
-              "total": obj.limit,  //总数
-              "offset": obj.offset, //实际偏移量
+              "total": userObj.limit,  //总数
+              "offset": userObj.offset, //实际偏移量
               "count": doc.length,  //实际个数
               "users": []
-            }
+            };
             for (var i = 0; i < doc.length; i++) {
                 var user = {
                     id: doc[i].id,
                     user_name: doc[i].userName,
                     nick_name: doc[i].nickName,
                     enable:  doc[i].enabled
-                }
+                };
                 result.users.push(user);
-            };
+            }
         } else {
             statusCode = 500;
             result.code = '2001';
@@ -91,10 +91,10 @@ exports.getUserInfo = function (token, userId, cb) {
         var statusCode = 200;
         if (!err) {
             result = {
-                id: doc[i].id,
-                user_name: doc[i].userName,
-                nick_name: doc[i].nickName,
-                enable:  doc[i].enabled
+                id: doc.id,
+                user_name: doc.userName,
+                nick_name: doc.nickName,
+                enable:  doc.enabled
             };
         } else {
             statusCode = 500;
@@ -110,6 +110,8 @@ exports.getUserInfo = function (token, userId, cb) {
 
 exports.updateUser = function (token, userId, userObj, cb) {
     users.updateUser(userId, userObj, function (err, doc) {
+        var result = {};
+        var statusCode = 200;
         if (!err) {
             result = doc;
         } else {

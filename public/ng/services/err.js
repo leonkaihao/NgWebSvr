@@ -43,7 +43,7 @@ angular.module('myApp').factory('ErrService', function () {
             errItem = errMsgTab['99999'];
         }
         return {
-            name: errItem['name'],
+            name: errItem.name,
             message: errItem[lang]
         };
 	};
