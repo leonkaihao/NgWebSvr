@@ -11,7 +11,7 @@ exports.signUp = function(token, userObj, cb) {
 			result.content = {uid: ''};
 		} else {
             statusCode = 403;
-			result.code = '1109';
+			result.code = 'e1109';
 			result.message = err;
             result.description = err.message;
             result.source = '<<webui>>';
@@ -43,7 +43,7 @@ exports.getUsers = function (token, obj, cb) {
             }
         } else {
             statusCode = 500;
-            result.code = '2001';
+            result.code = 'e2001';
             result.message = err.message;
             result.description = err.message;
             result.source = '<<manager admin>>';
@@ -76,7 +76,7 @@ exports.createUser = function(token, userObj, cb) {
             }
         } else {
             statusCode = 500;
-            result.code = '2001';
+            result.code = 'e2001';
             result.message = err.message;
             result.description = err.message;
             result.source = '<<webui>>';
@@ -98,7 +98,7 @@ exports.getUserInfo = function (token, userId, cb) {
             };
         } else {
             statusCode = 500;
-            result.code = '2001';
+            result.code = 'e2001';
             result.message = err.message;
             result.description = err.message;
             result.source = '<<webui>>';
@@ -116,7 +116,7 @@ exports.updateUser = function (token, userId, userObj, cb) {
             result = doc;
         } else {
             statusCode = 500;
-            result.code = '2001';
+            result.code = 'e2001';
             result.message = err.message;
             result.description = err.message;
             result.source = '<<webui>>';

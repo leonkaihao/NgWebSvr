@@ -11,7 +11,7 @@ exports.createSession = function (cb) {
 			result.token = data;
 		} else {
             statusCode = 500;
-            result.code = '1109';
+            result.code = 'e1109';
             result.message = err.message;
             result.description = err.message;
             result.source = '<<webui>>';
@@ -26,13 +26,13 @@ exports.verifyToken = function(token, cb) {
         var statusCode = 200;
         if (err) {
             statusCode = 403;
-            result.code = '1110';
+            result.code = 'e1110';
             result.message = err.message;
             result.description = err.message;
             result.source = '<<webui>>';
         } else if (!valid) {            
             statusCode = 403;
-            result.code = '1110';
+            result.code = 'e1110';
             result.description = result.message = "verify failed";
             result.source = '<<webui>>';
         }
@@ -60,7 +60,7 @@ exports.createUser = function(token, obj, cb) {
                     cb(statusCode, result);
                 } else {                    
                     statusCode = 500;
-                    result.code = '1109';
+                    result.code = 'e1109';
                     result.message = err.message;
                     result.description = err.message;
                     result.source = '<<webui>>';
@@ -69,7 +69,7 @@ exports.createUser = function(token, obj, cb) {
             });
 		} else {
             statusCode = 500;
-            result.code = '1109';
+            result.code = 'e1109';
             result.message = err.message;
             result.description = err.message;
             result.source = '<<webui>>';
@@ -86,7 +86,7 @@ exports.signOut = function (token, cb) {
             statusCode = 200;
         } else {
             statusCode = 500;
-            result.code = '1110';
+            result.code = 'e1110';
             result.message = err.message;
             result.description = err.message;
             result.source = '<<webui>>';
@@ -102,7 +102,7 @@ exports.getUser = function (token, cb) {
         if (!err) {
             if (!data.userId) {
                 statusCode = 404;
-                result.code = '0004';
+                result.code = 'e0004';
                 result.description = result.message = 'No user logged';
                 result.source = '<<webui>>';
             } else {
@@ -115,7 +115,7 @@ exports.getUser = function (token, cb) {
             }
         } else {
             statusCode = 404;
-            result.code = '2001';
+            result.code = 'e2001';
             result.message = err.message;
             result.description = err.message;
             result.source = '<<webui>>';

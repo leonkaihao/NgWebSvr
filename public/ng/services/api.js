@@ -7,7 +7,7 @@
  * # ApiService
  * Service of the myApp
  */
-angular.module('myApp').factory('ApiService', ['$http', 'ErrService', function ($http, ErrService) {
+angular.module('myApp').factory('ApiService', ['$http', 'MsgService', function ($http, MsgService) {
     var cfgData = {};
 
     //用于构造url参数，object参数最好只包含基本类型的元素，不要嵌套对象或数组
@@ -63,7 +63,7 @@ angular.module('myApp').factory('ApiService', ['$http', 'ErrService', function (
             successcb(data);
         }).error(function (data, status, headers, config) {
             if (data.code) {
-                failcb(ErrService.getErr(data.code));
+                failcb(MsgService.getErr(data.code));
             }                
             console.error(data);
         });
@@ -79,7 +79,7 @@ angular.module('myApp').factory('ApiService', ['$http', 'ErrService', function (
             successcb(data);
         }).error(function (data, status, headers, config) {
             if (data.code) {
-                failcb(ErrService.getErr(data.code));
+                failcb(MsgService.getErr(data.code));
             }                
             console.error(data);
         });
@@ -95,7 +95,7 @@ angular.module('myApp').factory('ApiService', ['$http', 'ErrService', function (
             successcb(data);
         }).error(function (data, status, headers, config) {
             if (data.code) {
-                failcb(ErrService.getErr(data.code));
+                failcb(MsgService.getErr(data.code));
             }                
             console.error(data);
         });
@@ -111,7 +111,7 @@ angular.module('myApp').factory('ApiService', ['$http', 'ErrService', function (
             successcb(data);
         }).error(function (data, status, headers, config) {
             if (data.code) {
-                failcb(ErrService.getErr(data.code));
+                failcb(MsgService.getErr(data.code));
             }                
             console.error(data);
         });
@@ -126,7 +126,7 @@ angular.module('myApp').factory('ApiService', ['$http', 'ErrService', function (
         .success(function (data, status, headers, config) {
             successcb('');
         }).error(function (data, status, headers, config) {
-            failcb(ErrService.getErr('0004'));
+            failcb(MsgService.getErr('0004'));
         });
     };
     return cfgData;
