@@ -1,5 +1,5 @@
 {
-    "env": "test", //options are: "test", "production"
+    "env": "dev", //options are: "dev", "product"
     "servers": {
         //this is a example to define a server that for web server to communicate with.
         // "serverName1": {                 //arbitrary server name, not duplicate in "servers" section

@@ -1,13 +1,9 @@
 {
-  "name": "ManagerAdminSvr",
+  "name": "websvr",
   "version": "0.0.0",
-  "homepage": "http://cb.sonix.com.tw/cb/project/948",
+  "homepage": "https://github.com/leonkaihao/NgWebSvr",
   "authors": [
-    "kai_hao",
-    "qian_zhang",
-    "yu_dai",
-    "yuan_gao",
-    "jing_ding"
+    "kai_hao"
   ],
   "moduleType": [
     "amd"

@@ -11,7 +11,8 @@ var configuration = exports = module.exports = {
             cb(new Error('Failed to load config file' + cfgFile));
         }
         try {
-            configuration.data = JSON.parse(stripJson(data));
+            var jData = stripJson(data);
+            configuration.data = JSON.parse(jData);
         } catch (err) {
             cb(err);
         }        
