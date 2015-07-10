@@ -19,9 +19,9 @@ userObj.init = function (ap) {
 
 userObj.verifyUser = function (userName, password, cb) {
 	UserModel.findOne({
-        'userName': userName, 
+        'user_name': userName, 
         'password': password
-    }).select('id userName nickName').exec(function (err, user) {
+    }).select('id user_name nick_name').exec(function (err, user) {
 		if (err) {
 			cb(err, null);
         } else if (!user) {
@@ -34,7 +34,7 @@ userObj.verifyUser = function (userName, password, cb) {
 
 userObj.queryUser = function(userName, cb) {
     UserModel.findOne({
-        'userName': userName
+        'user_name': userName
     }).select('id').exec(function (err, user) {
         if (err) {
             cb(err, null);
@@ -49,12 +49,12 @@ userObj.queryUser = function(userName, cb) {
 userObj.createUser = function (userName, password, userObj, cb) {
     var userInfo = {
         id: uuid.v4(),
-        userName: userName,
+        user_name: userName,
         password: password,
-        nickName: userName
+        nick_name: userName
     };
-    if (userObj.nickName) {
-        userInfo.nickName = userObj.nickName;
+    if (userObj.nick_name) {
+        userInfo.nick_name = userObj.nick_name;
     }
     var newUser = new UserModel(userInfo);
     newUser.save ( function ( err, user ){
@@ -82,12 +82,12 @@ userObj.updateUser = function (userId, userObj, cb) {
                 if (key === 'password') {
                     user.password = userObj.password;
                 }
-                if (key === 'nickName') {
-                    user.nickName = userObj.nickName;
+                if (key === 'nick_name') {
+                    user.nick_name = userObj.nick_name;
                 }
                 //todo: add other attrs here
                 //...
-                user.modifyOn = Date.now();
+                user.modify_on = Date.now();
             }
             user.save(function (err, result) {
                 if (err) {
@@ -103,7 +103,7 @@ userObj.updateUser = function (userId, userObj, cb) {
 userObj.getUserInfo = function (userId, cb) {
     var acId = userId;
     UserModel.findOne({id: acId})
-    .select('id userName nickName createOn modifyOn enabled')
+    .select('id user_name nick_name create_on modify_on enabled')
     .exec(function (err, user) {
         if (err) {
             cb(err, null)
@@ -124,7 +124,7 @@ userObj.getUserList = function (offset, limit, cb) {
     UserModel.find()
     .skip(offset)
     .limit(limit)
-    .select('id userName nickName createOn modifyOn enabled')
+    .select('id user_name nick_name create_on modify_on enabled')
     .exec(function(err, users) {
         if (err) {
             cb(err, null)

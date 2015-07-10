@@ -46,17 +46,13 @@ exports.createUser = function(token, obj, cb) {
         var statusCode = 200;
 		if (!err) {
             var userData = {
-                userId: doc.id,
-                userName: doc.userName,
-                nickName: doc.nickName
+                user_id: doc.id,
+                user_name: doc.user_name,
+                nick_name: doc.nick_name
             };
             sessions.updateSession(token, userData, function(err, data) {
                 if (!err) {
-                    result = {
-                      user_id: doc.id,
-                      user_name: doc.userName,
-                      nick_name: doc.nickName
-                    };
+                    result = userData;
                     cb(statusCode, result);
                 } else {                    
                     statusCode = 500;
@@ -96,7 +92,7 @@ exports.signOut = function (token, cb) {
 };
 
 exports.getUser = function (token, cb) {
-    sessions.getSessionAttrs(token, ['userId', 'userName', 'nickName'], function(err, data) {
+    sessions.getSessionAttrs(token, ['user_id', 'user_name', 'nick_name'], function(err, data) {
         var result = {};
         var statusCode = 200;
         if (!err) {
@@ -107,11 +103,7 @@ exports.getUser = function (token, cb) {
                 result.source = '<<webui>>';
             } else {
                 statusCode = 200;
-                result = {
-                    user_id: data.userId,
-                    user_name: data.userName,
-                    nick_name: data.nickName
-                };
+                result = data;
             }
         } else {
             statusCode = 404;

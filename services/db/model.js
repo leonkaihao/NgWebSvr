@@ -19,15 +19,15 @@ var oAuthSchema = new Schema({
 
 var UserSchema = new Schema({
     id:       {type: String, unique: true, required: true},
-    userName: {type: String, unique: true, required: true},     //登录名
+    user_name: {type: String, unique: true, required: true},    //登录名
     password: {type: String, required: true},                   //密码
     email:    {type: String},                                   //fixme:validator
     phone:    {type: String},                                   //fixme:validator
     oauth:    [oAuthSchema],                                    //oAuth可支持多个认证站点
 
-    nickName: {type: String},                                   //昵称
-    createOn: {type: Date, default: Date.now},                  //创建时间
-    modifyOn: {type: Date},                                     //修改时间
+    nick_name: {type: String},                                  //昵称
+    create_on: {type: Date, default: Date.now},                 //创建时间
+    modify_on: {type: Date},                                    //修改时间
     enabled:  {type: Boolean, default: true}                    //账号禁用开关
 });
 

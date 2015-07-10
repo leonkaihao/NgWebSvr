@@ -49,7 +49,7 @@ exports.createSession = function(cb) {
     var key = keyWrapper(token);
     var date = Date.now();
 
-    client.hset(key, "createOn", date, function(err, reply) {
+    client.hset(key, "create_on", date, function(err, reply) {
         if (err) {
             cb(err, null);
         } else {
@@ -75,7 +75,7 @@ exports.clearSession = function(token, cb) {
                     //ignore "createOn"
                     var delArr = [];
                     for (var i = 0; i < count; ++i) {
-                        if (reply[i] !== 'createOn') {
+                        if (reply[i] !== 'create_on') {
                             delArr.push(reply[i]);
                         }
                     }
