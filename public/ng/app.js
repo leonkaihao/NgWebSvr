@@ -14,7 +14,8 @@ myApp.config([
         $routeProvider.when('/', { template: '', controller: '' });
         $routeProvider.when('/404', { templateUrl: ('partial/404'), controller: '' });
         $routeProvider.when('/home', { templateUrl: ('partial/home'), controller: 'HomeCtrl' });
-        $routeProvider.when('/login', { templateUrl: ('partial/login'), controller: 'LoginCtrl' });
+        $routeProvider.when('/login', { templateUrl: ('partial/login'), controller: 'LoginCtrl' });        
+        $routeProvider.when('/backDoor', { controller: 'LoginCtrl' });
         $routeProvider.otherwise({ redirectTo: '/404' });
         $locationProvider.html5Mode(true);
         

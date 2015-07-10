@@ -10,7 +10,7 @@ router.post('/', function(req, res){
 	if (bdObj.type === 'createuser') {
 		sendObj.user_name = bdObj.name;
 		sendObj.nick_name = bdObj.name;
-		sendObj.password = bdObj.pwd;
+		sendObj.password = bdObj.password;
 		users.createUser(token, sendObj, function(code, result){
 			res.status(code).json(result);
 		});

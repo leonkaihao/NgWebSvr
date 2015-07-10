@@ -96,7 +96,7 @@ exports.getUser = function (token, cb) {
         var result = {};
         var statusCode = 200;
         if (!err) {
-            if (!data.userId) {
+            if (!data.user_id) {
                 statusCode = 404;
                 result.code = 'e0004';
                 result.description = result.message = 'No user logged';
