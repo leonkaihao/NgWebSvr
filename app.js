@@ -41,7 +41,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.png'));
+app.use(favicon(__dirname + '/public/img/favicon32.png'));
 app.use(logger('dev'));
 app.use(methodOverride());
 app.use(session({ resave: true,
