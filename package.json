@@ -6,7 +6,7 @@
   "repository": "https://github.com/leonkaihao/NgWebSvr",
   "scripts": {
     "start": "node app.js",
-    "postinstall": "bower update",
+    "postinstall": "bower install",
     "prestart": "npm update"
   },
   "dependencies": {
