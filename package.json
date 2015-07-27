@@ -2,6 +2,8 @@
   "name": "websvr",
   "version": "0.0.0",
   "private": true,
+  "description": "A fine tune framework for angular-nodejs webserver",
+  "repository": "https://github.com/leonkaihao/NgWebSvr",
   "scripts": {
     "start": "node app.js",
     "postinstall": "bower update",
