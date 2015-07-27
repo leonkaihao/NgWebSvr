@@ -1,5 +1,5 @@
 # NgWebSvr Description
- [![Travis](https://travis-ci.org/leonkaihao/NgWebSvr.svg?branch=master)](https://travis-ci.org/leonkaihao/NgWebSvr)
+ [![Travis](https://travis-ci.org/leonkaihao/NgWebSvr.svg?branch=master)](https://travis-ci.org/leonkaihao/NgWebSvr)[![Coverage Status](https://coveralls.io/repos/leonkaihao/NgWebSvr/badge.svg)](https://coveralls.io/github/leonkaihao/NgWebSvr)
 ## Description
 NgWebSvr is a framework of websvr as a seed, integrated with functions below:
  - Frontend: Angular
