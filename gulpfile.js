@@ -12,9 +12,15 @@ var jeditor = require("gulp-json-editor");
 var jsonlint = require("gulp-jsonlint");
 var concat = require('gulp-concat');
 var rename = require('gulp-rename'); //not used now, maybe later
+var coveralls = require('gulp-coveralls');
 
 gulp.task('clean', function(cb){
     del(['dist'], cb);
+});
+
+gulp.task('coveralls', function(){
+    return gulp.src('./coverage/lcov.info')
+        .pipe(coveralls());
 });
 
 gulp.task('build', ['clean'], function () {
