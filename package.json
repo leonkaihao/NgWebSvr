@@ -6,9 +6,9 @@
   "repository": "https://github.com/leonkaihao/NgWebSvr",
   "scripts": {
     "start": "node app.js",
-    "postinstall": "bower install",
+    "postinstall": "./node_modules/.bin/bower install",
     "prestart": "npm update",
-    "test": "./node_modules/.bin/gulp jshint && ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcov -- -R spec",
+    "test": "./node_modules/.bin/jshint app.js && ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcov -- -R spec",
     "coveralls": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info && ./node_modules/.bin/gulp coveralls && rm -rf ./coverage"
   },
   "dependencies": {
@@ -46,6 +46,7 @@
     "gulp-strip-json-comments": "^1.0.2",
     "gulp-uglify": "^1.2.0",
     "istanbul": "^0.3.17",
+    "jshint": "^2.8.0",
     "jshint-stylish": "^2.0.1",
     "karma": "^0.13.3",
     "mocha": "^2.2.5",
