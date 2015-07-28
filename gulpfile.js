@@ -23,6 +23,30 @@ gulp.task('coveralls', function(){
         .pipe(coveralls());
 });
 
+gulp.task('jshint', function() {
+    var ngFilter = gulpFilter([
+        'public/ng/*.js',
+        'public/ng/**/*.js'
+    ]);
+    var jsFilter = gulpFilter([
+        'app.js',
+        'routes/*.js',
+        'controllers/*.js',
+        'services/**/*.js'
+    ]);
+
+    return gulp.src(['**'])
+        //tune angular file
+        .pipe(ngFilter)
+        .pipe(jshint())
+        .pipe(ngFilter.restore()).on('error', errHandler)
+        //tune nodejs file
+        .pipe(jsFilter)
+        .pipe(jshint())
+        .pipe(jshint.reporter(stylish))
+        .pipe(jsFilter.restore()).on('error', errHandler);
+});
+
 gulp.task('build', ['clean'], function () {
     var ngFilter = gulpFilter([
         'public/ng/*.js',
