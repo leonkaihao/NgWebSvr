@@ -5,7 +5,7 @@
 var sessionStorage = window.sessionStorage;
 
 // Declare app level module which depends on filters, and services
-var myApp = angular.module('myApp', ['ngResource', 'ngAnimate', 'ngRoute', 'ngTouch', 'cgBusy', 'ngMaterial', 'ngMessages']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngResource', 'ngMessages', 'ngAnimate', 'ngTouch', 'cgBusy', 'ngMaterial']);
 myApp.config([
     '$routeProvider', 
     '$locationProvider',
@@ -24,8 +24,14 @@ myApp.config([
 ]);
   
 myApp.run(['$location', 'SessionsService', function ($location, SessionsService) {
+    var path = $location.path();
+    if (path !== '/') {
+        $location.path('/');
+    } else {
+        path = '/home';
+    }
     SessionsService.initSession(function(data){
-        $location.path('/home');
+        $location.path(path);
     }, function(err){
         if (err.name == 'NeedSignIn') {
             $location.path('/login');
